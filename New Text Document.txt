@@ -1,4 +1,10 @@
 docker run -dit --name my-apache-app -p 9000:80 -v /home/ec2-user/code:/usr/local/apache2/htdocs/ httpd:2.4
 
 # to build own apache
-FROM 
+FROM centos:latest
+Maintainer rkn047@gmail.com
+RUN yum update
+RUN yum -y install httpd
+EXPOSE 80
+ADD code /var/www/html
+CMD ["apache", "-D", "FORZGROUND"]
